@@ -1,43 +1,42 @@
 class Greeting
-  def greet(name = nil)
-    if name.nil?
-      "Hello, my friend."
-    elsif name == name.upcase
-      "HELLO #{name}!"
+  def greet(*name)
+    if name.any?
+      low_case = name.reject { |x| x == x.upcase }
+      up_case= name.select { |r| r == r.upcase }
+      up_case_string = up_case.join(",")
+      name_string = name.join("")
+      if name.length == 1 and name == low_case
+        "Hello, #{name.join(",")}."
+      elsif name.length == 1 and name == up_case
+        "HELLO #{name.join(",")}!"
+      elsif name.length == 2 and !name_string.include?(",") and !name_string.include?("\"")
+        "Hello, #{name.first} and #{name.last}."
+      elsif name.length > 2 and name == low_case
+        "Hello, #{name[0..-2].join(", ")}, and #{name.last}."
+      elsif name.length > 2 and name.include? up_case_string
+        "Hello, #{low_case[0..-2].join(', ')} and #{low_case.last}. AND HELLO #{up_case.join('')}!"
+      elsif name.length == 2 and name_string.include?(",") and  !name_string.include?("\"")
+        separated_names = split_names(name)
+        "Hello, #{separated_names[0..-2].join(', ')}, and#{separated_names.last}."
+      elsif name.length == 2 and name_string.include?("\"")
+        converted_names = escape_commas(name)
+        "Hello, #{converted_names.first} and #{converted_names[1..-2].join("")},#{converted_names.last}."
+      end
     else
-      "Hello, #{name}."
+      "Hello, my friend."
     end
   end
 
-  def greet2(name1, name2)
-    "Hello, #{name1} and #{name2}."
+  def split_names(*names_to_split)
+    string_of_names = names_to_split.join(",")
+    separated_names = string_of_names.split(",")
+    return separated_names
   end
 
-  def greet_multiple(*name)
-    last = name.pop()
-    "Hello, #{name.join(', ')}, and #{last}."
+  def escape_commas(*names_to_escape)
+    all_names = names_to_escape.join(",")
+    escaped_names = all_names.gsub("\"", "")
+    separated_names = escaped_names.split(",")
+    return separated_names
   end
-
-  def greet_multiple_shout(*name)
-    last = name.pop()
-    y = name.select { |x| x != x.upcase }
-    s = name.select { |r| r == r.upcase }
-    "Hello, #{y.join(', ')} and #{last}. AND HELLO #{s.join('')}!"
-  end
-
-  def greet_split_commas(*name)
-    y = name.join(',')
-    p = y.split(",")
-    last = p.pop()
-    "Hello, #{p.join(', ')}, and#{last}."
-  end
-
-  def greet_escape_intentional_commas(*name)
-    p = name.join(',')
-    y = p.gsub("\"", "")
-    x = y.split(",")
-    last = x.pop()
-    "Hello, #{x.join(' and ')},#{last}."
-  end
-
 end

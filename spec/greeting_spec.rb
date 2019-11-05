@@ -28,7 +28,7 @@ RSpec.describe Greeting do
   it "greets with two names" do
     greeter = Greeting.new
 
-    result = greeter.greet2("Jill", "Jane")
+    result = greeter.greet("Jill", "Jane")
 
     expect(result).to eq("Hello, Jill and Jane.")
   end
@@ -36,15 +36,15 @@ RSpec.describe Greeting do
   it "greets with multiple names" do
     greeter = Greeting.new
 
-    result = greeter.greet_multiple("Amy", "Brian", "Charlotte")
+    result = greeter.greet("Amy", "Brian", "Charlotte")
 
     expect(result).to eq("Hello, Amy, Brian, and Charlotte.")
   end
 
-  it "greets with multiple names including shouting" do
+ it "greets with multiple names including shouting" do
     greeter = Greeting.new
 
-    result = greeter.greet_multiple_shout("Amy", "BRIAN", "Charlotte")
+    result = greeter.greet("Amy", "BRIAN", "Charlotte")
 
     expect(result).to eq("Hello, Amy and Charlotte. AND HELLO BRIAN!")
   end
@@ -52,7 +52,7 @@ RSpec.describe Greeting do
   it "greets with multiple names, split using commas" do
     greeter = Greeting.new
 
-    result = greeter.greet_split_commas("Bob", "Charlie, Dianne")
+    result = greeter.greet("Bob", "Charlie, Dianne")
 
     expect(result).to eq("Hello, Bob, Charlie, and Dianne.")
   end
@@ -60,10 +60,8 @@ RSpec.describe Greeting do
   it "greets with multiple names, escapes intentional commas" do
     greeter = Greeting.new
 
-    result = greeter.greet_escape_intentional_commas("Bob", "\"Charlie, Dianne\"")
+    result = greeter.greet("Bob", "\"Charlie, Dianne\"")
 
     expect(result).to eq("Hello, Bob and Charlie, Dianne.")
   end
-
-
 end
