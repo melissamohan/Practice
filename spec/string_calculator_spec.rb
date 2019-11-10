@@ -24,4 +24,14 @@ RSpec.describe Calculator do
 
     expect(result).to eq(12)
   end
+
+  it "returns the sum of all numbers" do
+
+    calculate = Calculator.new
+
+    result = calculate.add(4,8,10)
+
+    expect(result).to eq(22)
+
+  end
 end
