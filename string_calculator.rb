@@ -4,16 +4,19 @@ class Calculator
     convert = num.join(",")
     if num.empty?
       0
-    elsif num.length == 1 and !convert.include?("\n")
+    elsif num.length == 1 and !convert.include?("\n") and !convert.start_with?("//")
       num[0]
-    elsif num.length == 2 and !num.include?("\n")
+    elsif num.length == 2 and !num.include?("\n") and !convert.start_with?("//")
       num[0] + num[1]
-    elsif num.length > 2 and !num.include?("\n")
+    elsif num.length > 2 and !num.include?("\n") and !convert.start_with?("//")
       num.each { |x| sum += x }
       sum
-    elsif convert.include?("\n")
+    elsif convert.include?("\n") and !convert.start_with?("//")
       result = new_line(num)
       result
+    elsif convert.start_with?("//")
+      delim = begins(num)
+      delim
     end
   end
 

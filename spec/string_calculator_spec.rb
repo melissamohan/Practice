@@ -47,7 +47,7 @@ RSpec.describe Calculator do
 
     calculate = Calculator.new
 
-    result = calculate.begins("//;\n1;2")
+    result = calculate.add("//;\n1;2")
 
     expect(result).to eq(3)
   end
