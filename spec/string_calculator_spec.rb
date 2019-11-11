@@ -38,7 +38,7 @@ RSpec.describe Calculator do
 
     calculate = Calculator.new
 
-    result = calculate.new_line("1\n2,3")
+    result = calculate.add("1\n2,3")
 
     expect(result).to eq(6)
   end
