@@ -32,6 +32,15 @@ RSpec.describe Calculator do
     result = calculate.add(4,8,10)
 
     expect(result).to eq(22)
-
   end
+
+  it "handle new lines between numbers" do
+
+    calculate = Calculator.new
+
+    result = calculate.new_line("1\n2,3")
+
+    expect(result).to eq(6)
+  end
+
 end
