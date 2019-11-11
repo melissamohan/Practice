@@ -43,4 +43,13 @@ RSpec.describe Calculator do
     expect(result).to eq(6)
   end
 
+  it "support different delimiters" do
+
+    calculate = Calculator.new
+
+    result = calculate.begins("//;\n1;2")
+
+    expect(result).to eq(3)
+  end
 end
+

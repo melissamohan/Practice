@@ -26,5 +26,17 @@ class Calculator
     s.each { |x| p += x }
     p
   end
+
+  def begins(*num)
+    p = 0
+    a = num.join("")
+    a.gsub!("//","")
+    separator = a[0].to_s
+    o = a.gsub("\n", "")
+    q = o.split(separator)
+    q.map!(&:to_i)
+    q.each { |x| p += x }
+    p
+  end
 end
 
