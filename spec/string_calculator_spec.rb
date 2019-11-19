@@ -12,7 +12,7 @@ RSpec.describe Calculator do
   it "returns number when one number is given" do
     calculate = Calculator.new
 
-    result = calculate.add(4)
+    result = calculate.add("4")
 
     expect(result).to eq(4)
   end
@@ -20,7 +20,7 @@ RSpec.describe Calculator do
   it "returns the sum of two numbers" do
     calculate = Calculator.new
 
-    result = calculate.add(4,8)
+    result = calculate.add("4,8")
 
     expect(result).to eq(12)
   end
@@ -29,12 +29,12 @@ RSpec.describe Calculator do
 
     calculate = Calculator.new
 
-    result = calculate.add(4,8,10)
+    result = calculate.add("4,8,10")
 
     expect(result).to eq(22)
   end
 
-  it "handle new lines between numbers" do
+  xit "handle new lines between numbers" do
 
     calculate = Calculator.new
 
@@ -43,13 +43,22 @@ RSpec.describe Calculator do
     expect(result).to eq(6)
   end
 
-  it "support different delimiters" do
+  xit "support different delimiters" do
 
     calculate = Calculator.new
 
     result = calculate.add("//;\n1;2")
 
     expect(result).to eq(3)
+  end
+
+  xit "displays error when negative" do
+
+    calculate = Calculator.new
+
+    result = calculate.add(1,4,-1)
+
+    expect(result).to eq("negatives not allowed: -1")
   end
 end
 
