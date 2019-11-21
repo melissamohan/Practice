@@ -34,7 +34,7 @@ RSpec.describe Calculator do
     expect(result).to eq(22)
   end
 
-  xit "handle new lines between numbers" do
+  it "handle new lines between numbers" do
 
     calculate = Calculator.new
 
