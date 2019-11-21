@@ -43,7 +43,7 @@ RSpec.describe Calculator do
     expect(result).to eq(6)
   end
 
-  xit "support different delimiters" do
+  it "support different delimiters" do
 
     calculate = Calculator.new
 
