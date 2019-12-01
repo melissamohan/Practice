@@ -1,46 +1,26 @@
-class Calculator
-  def add(*num)
-    convert = num.join("")
-    separate_string = convert.split(",")
+class StringCalculator
+  def add(string_of_numbers = "")
+    separate_string = string_of_numbers.split(",")
     numbers = separate_string.collect do |n|
       n.to_i
     end
+    neg = numbers.select(&:negative?)
+    neg_check = numbers.any? { |x| x.negative? }
+    puts string_of_numbers
     puts numbers
-    puts convert
-    if numbers.empty?
+    if string_of_numbers.start_with?("//")
+      delimiter = string_of_numbers.gsub!("//", "")
+      separator = a[0].to_s
+    else
+      separator = ","
+    end
+
+    if string_of_numbers.length == 0
       0
-    elsif numbers.length == 1 and !convert.include?("\n") and !convert.start_with?("//")
-      numbers[0]
-    elsif numbers.length == 2 and !convert.include?("\n") and !convert.start_with?("//")
-      numbers[0] + numbers[1]
-    elsif numbers.length > 2 and !convert.include?("\n") and !convert.start_with?("//")
-      sum = 0
-      numbers.each { |x| sum += x }
-      sum
-    elsif convert.include?("\n") and !convert.start_with?("//")
-      p = 0
-      r = convert.gsub("\n", ",")
-      s = r.split(",")
-      s.map!(&:to_i)
-      s.each { |x| p += x }
-      p
-    elsif convert.start_with?("//")
-      delim = begins(num)
-      delim
+    elsif neg_check
+      "negatives not allowed: #{neg.join("")}"
+    elsif string_of_numbers.length == 1
+      string_of_numbers[0].to_i
     end
   end
-
-  def begins(*num)
-    p = 0
-    a = num.join("")
-    a.gsub!("//","")
-    separator = a[0].to_s
-    o = a.gsub("\n", "")
-    q = o.split(separator)
-    q.map!(&:to_i)
-    q.each { |x| p += x }
-    p
-  end
 end
-
-
