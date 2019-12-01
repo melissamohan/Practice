@@ -21,6 +21,10 @@ class StringCalculator
       "negatives not allowed: #{neg.join("")}"
     elsif string_of_numbers.length == 1
       string_of_numbers[0].to_i
+    elsif string_of_numbers.length > 1
+      sum = 0
+      numbers.each { |x| sum += x }
+      sum
     end
-  end
+end
 end
