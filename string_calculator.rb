@@ -20,7 +20,7 @@ class StringCalculator
     if string_of_numbers.length == 0
       0
     elsif string_of_numbers.length > 0
-       calculate_sum(numbers)
+      calculate_sum(numbers)
     end
   end
 
