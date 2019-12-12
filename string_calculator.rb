@@ -19,9 +19,7 @@ class StringCalculator
 
     if string_of_numbers.length == 0
       0
-    elsif string_of_numbers.length == 1
-      string_of_numbers[0].to_i
-    elsif string_of_numbers.length > 1
+    elsif string_of_numbers.length > 0
        calculate_sum(numbers)
     end
   end
