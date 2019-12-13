@@ -1,28 +1,27 @@
 class StringCalculator
-  def add(string_of_numbers = "")
-    numbers = extract_number(string_of_numbers)
+  def add(input_string = "")
+    numbers = extract_numbers(input_string)
 
     negative_numbers = numbers.select(&:negative?)
     return "negatives not allowed: #{negative_numbers.join("")}" if numbers.any?(&:negative?)
 
     numbers.reject! { |number| number >= 1000 }
 
-    numbers.sum()
+    numbers.sum
   end
 
   private
 
-  def extract_number(string_of_numbers)
-    if string_of_numbers.start_with?("//")
-      string_of_numbers_mod = string_of_numbers.gsub("//", "")
-      separator = string_of_numbers_mod[0].to_s
+  def extract_numbers(input_string)
+    if input_string.start_with?("//")
+      modified_input_string = input_string.gsub("//", "")
+      separator = modified_input_string[0].to_s
       delimiters = ["\n", separator]
-      new_string = string_of_numbers_mod.split(Regexp.union(delimiters))
+      numbers_list = modified_input_string.split(Regexp.union(delimiters))
     else
       delimiters = ["\n", ","]
-      new_string = string_of_numbers.split(Regexp.union(delimiters))
+      numbers_list = input_string.split(Regexp.union(delimiters))
     end
-    extracted_numbers = new_string.map(&:to_i)
-    extracted_numbers
+    numbers_list.map(&:to_i)
   end
 end
